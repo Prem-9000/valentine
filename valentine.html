@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Be My Valentine ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      width: 350px;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #444;
+    }
+
+    /* ✅ Button container */
+    .buttons {
+      margin-top: 25px;
+      position: relative;
+      height: 70px;
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+      width: 120px;
+    }
+
+    /* ✅ YES button fixed */
+    #yesBtn {
+      background-color: #ff4d6d;
+      color: white;
+      position: absolute;
+      left: 20px;
+      top: 15px;
+    }
+
+    /* ✅ NO button will move inside this container */
+    #noBtn {
+      background-color: #666;
+      color: white;
+      position: absolute;
+      left: 190px;
+      top: 15px;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #ff4d6d;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Hey Love ❤️</h1>
+    <p>
+      I just wanted to say…<br><br>
+      You make my days brighter, my smile bigger, and my heart happier 💕<br><br>
+      Sooo… 😍
+    </p>
+
+    <h2>Will you be my Valentine? 💌</h2>
+
+    <div class="buttons" id="btnBox">
+      <button id="yesBtn">Yes ✅</button>
+      <button id="noBtn">No ❌</button>
+    </div>
+
+    <div class="message" id="msg"></div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const msg = document.getElementById("msg");
+    const btnBox = document.getElementById("btnBox");
+
+    function moveNoButton() {
+      const maxX = btnBox.clientWidth - noBtn.offsetWidth;
+      const maxY = btnBox.clientHeight - noBtn.offsetHeight;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      noBtn.style.left = randomX + "px";
+      noBtn.style.top = randomY + "px";
+    }
+
+    // ✅ Move on hover
+    noBtn.addEventListener("mouseenter", moveNoButton);
+
+    // ✅ Move on click also (so they can't click easily)
+    noBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      moveNoButton();
+    });
+
+    // ✅ YES button message
+    yesBtn.addEventListener("click", () => {
+      msg.innerHTML = "Yayyy 😍❤️ I knew it!!! Happy Valentine’s Day 💕";
+      noBtn.style.display = "none";
+    });
+  </script>
+
+</body>
+</html>
